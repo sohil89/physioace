@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhysioAce — Dr. Simran Shaikh, MPT</title>
+<meta name="description" content="Premium physiotherapy by Dr. Simran Shaikh (MPT) in Andheri West, Mumbai. Specialising in women's health, pelvic floor therapy, geriatric rehab & more.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #FAF8F5;
+    --blue: #4A7FA5;
+    --blue-light: #7AAFC8;
+    --blue-pale: #D6E8F3;
+    --lavender: #C8BFD8;
+    --lavender-light: #EDE8F4;
+    --charcoal: #2C2C35;
+    --mid: #6B6B7A;
+    --white: #FFFFFF;
+    --gold: #B8986A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--ivory); color: var(--charcoal); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(250,248,245,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74,127,165,0.12);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--blue); letter-spacing: 0.04em; text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; cursor: pointer; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-book { background: var(--blue); color: white !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-book:hover { background: #3a6f95 !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--charcoal); transition: all 0.3s; }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--ivory); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--charcoal); text-decoration: none; cursor: pointer; }
+  .mobile-close { position: absolute; top: 24px; right: 32px; font-size: 2rem; cursor: pointer; color: var(--mid); background: none; border: none; }
+
+  /* PAGES */
+  .page { display: none; min-height: 100vh; padding-top: 80px; }
+  .page.active { display: block; }
+
+  /* HERO */
+  .hero-top { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 80px); }
+  .hero-left { padding: 80px 60px 60px; display: flex; flex-direction: column; justify-content: center; }
+  .hero-eyebrow { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); margin-bottom: 28px; }
+  .hero-left h1 em { font-style: italic; color: var(--blue); }
+  .hero-tagline { font-size: 1rem; line-height: 1.75; color: var(--mid); max-width: 440px; margin-bottom: 44px; }
+  .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--blue); color: white; padding: 15px 36px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.2s; }
+  .btn-primary:hover { background: #3a6f95; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--charcoal); padding: 14px 36px; border: 1.5px solid var(--charcoal); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .hero-right { background: var(--blue-pale); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .hero-right-inner { width: 100%; height: 100%; background: linear-gradient(160deg, var(--lavender-light) 0%, var(--blue-pale) 50%, #c2d8ec 100%); display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-abstract { position: absolute; border-radius: 50%; opacity: 0.25; }
+  .ha1 { width: 500px; height: 500px; background: var(--blue); top: -100px; right: -100px; }
+  .ha2 { width: 300px; height: 300px; background: var(--lavender); bottom: 60px; left: 30px; }
+  .ha3 { width: 180px; height: 180px; background: var(--gold); bottom: 200px; right: 100px; opacity: 0.15; }
+
+  /* PHOTO PLACEHOLDER */
+  .photo-placeholder {
+    position: relative; z-index: 2;
+    width: 300px; height: 380px;
+    background: linear-gradient(180deg, var(--blue-pale) 0%, rgba(74,127,165,0.25) 100%);
+    border: 2px dashed var(--blue-light);
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    padding-bottom: 0;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(74,127,165,0.2);
+  }
+  .photo-silhouette {
+    width: 160px; height: 220px;
+    background: linear-gradient(180deg, rgba(74,127,165,0.3) 0%, rgba(74,127,165,0.15) 100%);
+    border-radius: 80px 80px 0 0;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 20px;
+  }
+  .photo-head { width: 70px; height: 70px; border-radius: 50%; background: rgba(74,127,165,0.4); }
+  .photo-label {
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    background: white; padding: 6px 14px; font-size: 0.72rem;
+    color: var(--blue); letter-spacing: 0.1em; white-space: nowrap;
+    border: 1px solid var(--blue-pale);
+  }
+  .photo-card {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+    padding: 20px 24px;
+  }
+  .photo-card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--charcoal); }
+  .photo-card-title { font-size: 0.75rem; color: var(--blue); letter-spacing: 0.04em; margin-top: 4px; }
+
+  /* STATS */
+  .stats-strip { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--charcoal); padding: 40px 80px; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 6px; }
+  .stat-num span { color: var(--gold); }
+  .stat-label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+  /* SECTION UTILS */
+  .section-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3.2rem); font-weight: 400; line-height: 1.2; margin-bottom: 24px; }
+  .section-title em { font-style: italic; color: var(--blue); }
+  .divider { width: 60px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--blue)); margin: 0 auto 24px; }
+  .divider.left { margin: 0 0 24px; }
+  .section-pad { padding: 80px 60px; }
+
+  /* ABOUT */
+  .about-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh; }
+  .about-visual { background: linear-gradient(135deg, var(--lavender-light) 0%, var(--blue-pale) 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 480px; }
+  .about-photo-large {
+    position: relative; z-index: 2;
+    width: 320px; height: 420px;
+    background: linear-gradient(180deg, rgba(74,127,165,0.2) 0%, rgba(74,127,165,0.1) 100%);
+    border: 2px dashed var(--blue-light);
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(74,127,165,0.2);
+  }
+  .about-silhouette { width: 180px; height: 260px; background: linear-gradient(180deg, rgba(74,127,165,0.3) 0%, rgba(74,127,165,0.15) 100%); border-radius: 90px 90px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 24px; }
+  .about-head { width: 80px; height: 80px; border-radius: 50%; background: rgba(74,127,165,0.4); }
+  .about-photo-tag { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: white; padding: 6px 14px; font-size: 0.72rem; color: var(--blue); letter-spacing: 0.1em; white-space: nowrap; border: 1px solid var(--blue-pale); }
+  .about-content { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+  .about-text { font-size: 0.95rem; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
+
+  /* CERTIFICATIONS */
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 36px; }
+  .cert-card { background: var(--white); border: 1px solid var(--blue-pale); padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .cert-icon { width: 44px; height: 44px; background: var(--blue-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .cert-title { font-weight: 500; font-size: 0.88rem; margin-bottom: 4px; color: var(--charcoal); }
+  .cert-sub { font-size: 0.78rem; color: var(--mid); line-height: 1.5; }
+
+  /* SERVICES */
+  .services-header { text-align: center; padding: 80px 60px 60px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(74,127,165,0.1); margin: 0 60px 80px; }
+  .service-card { background: var(--ivory); padding: 48px 36px; position: relative; overflow: hidden; transition: background 0.3s; }
+  .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--lavender)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .service-card:hover { background: var(--white); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: var(--blue-pale); line-height: 1; margin-bottom: 16px; }
+  .service-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 12px; }
+  .service-desc { font-size: 0.85rem; line-height: 1.75; color: var(--mid); }
+
+  /* BLOG */
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 0 60px 80px; }
+  .blog-card { background: var(--white); border: 1px solid var(--blue-pale); overflow: hidden; cursor: pointer; transition: box-shadow 0.3s, transform 0.2s; }
+  .blog-card:hover { box-shadow: 0 12px 40px rgba(74,127,165,0.12); transform: translateY(-3px); }
+  .blog-thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden; }
+  .blog-body { padding: 28px; }
+  .blog-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .blog-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; line-height: 1.3; margin-bottom: 12px; }
+  .blog-excerpt { font-size: 0.82rem; line-height: 1.75; color: var(--mid); margin-bottom: 20px; }
+  .blog-meta { font-size: 0.75rem; color: var(--mid); display: flex; justify-content: space-between; }
+  .blog-full { display: none; }
+  .blog-full.open { display: block; }
+  .blog-article { max-width: 720px; margin: 0 auto; padding: 60px 24px 80px; }
+  .blog-article h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.2; margin-bottom: 20px; }
+  .blog-article .meta { font-size: 0.82rem; color: var(--mid); margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--blue-pale); }
+  .blog-article h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin: 36px 0 16px; color: var(--blue); }
+  .blog-article p { font-size: 0.93rem; line-height: 1.9; color: var(--mid); margin-bottom: 18px; }
+  .blog-article ul { padding-left: 20px; margin-bottom: 18px; }
+  .blog-article li { font-size: 0.93rem; line-height: 1.9; color: var(--mid); margin-bottom: 8px; }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--blue); cursor: pointer; border: none; background: none; padding: 0; letter-spacing: 0.05em; margin-bottom: 40px; text-transform: uppercase; }
+  .back-btn:hover { text-decoration: underline; }
+
+  /* FAQ */
+  .faq-wrap { max-width: 800px; margin: 0 auto; padding: 60px 24px 80px; }
+  .faq-item { border-bottom: 1px solid var(--blue-pale); }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; cursor: pointer; gap: 20px; }
+  .faq-q-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; color: var(--charcoal); line-height: 1.3; }
+  .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1.1rem; flex-shrink: 0; transition: transform 0.3s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+  .faq-item.open .faq-a { max-height: 400px; padding-bottom: 20px; }
+  .faq-a p { font-size: 0.9rem; line-height: 1.85; color: var(--mid); }
+
+  /* BOOKING */
+  .booking-hero { background: linear-gradient(135deg, var(--charcoal) 0%, #1e2a38 100%); padding: 100px 60px; text-align: center; position: relative; overflow: hidden; }
+  .booking-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(74,127,165,0.3) 0%, transparent 60%); }
+  .booking-hero * { position: relative; z-index: 1; }
+  .booking-hero .section-label { color: var(--gold); }
+  .booking-hero .section-title { color: white; margin-bottom: 16px; }
+  .booking-hero p { color: rgba(255,255,255,0.65); font-size: 0.95rem; max-width: 480px; margin: 0 auto 48px; line-height: 1.8; }
+  .booking-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto 56px; }
+  .booking-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 32px 24px; text-align: center; }
+  .booking-card-icon { font-size: 2rem; margin-bottom: 12px; }
+  .booking-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: white; margin-bottom: 8px; }
+  .booking-card-desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .booking-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-whatsapp { background: #25D366; color: white; padding: 16px 40px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+  .btn-whatsapp:hover { background: #1db954; transform: translateY(-1px); }
+  .btn-call { background: transparent; color: white; padding: 15px 40px; border: 1.5px solid rgba(255,255,255,0.3); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+  .btn-call:hover { border-color: white; }
+  .booking-info { display: grid; grid-template-columns: 1fr 1fr; background: var(--white); margin: 60px; border: 1px solid var(--blue-pale); }
+  .booking-info-left { padding: 60px; border-right: 1px solid var(--blue-pale); }
+  .booking-info-right { padding: 60px; }
+  .info-block { margin-bottom: 36px; }
+  .info-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .info-value { font-size: 0.95rem; line-height: 1.7; color: var(--charcoal); }
+  .info-value a { color: var(--blue); text-decoration: none; }
+
+  /* CONTACT */
+  .contact-wrap { padding: 80px 60px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+  .form-group input, .form-group select, .form-group textarea { padding: 14px 16px; border: 1.5px solid var(--blue-pale); background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--charcoal); outline: none; transition: border-color 0.2s; resize: none; appearance: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; padding-top: 12px; }
+  .contact-info-item .label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .contact-info-item .value { font-size: 0.95rem; line-height: 1.6; color: var(--charcoal); }
+  .contact-info-item .value a { color: var(--blue); text-decoration: none; }
+  .map-placeholder { margin-top: 32px; background: var(--blue-pale); height: 200px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 0.85rem; letter-spacing: 0.05em; border: 1px dashed var(--blue-light); flex-direction: column; gap: 10px; }
+
+  /* CHAT WIDGET */
+  .chat-widget { position: fixed; bottom: 28px; right: 28px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+  .chat-bubble { background: #25D366; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 24px rgba(37,211,102,0.4); transition: transform 0.2s, box-shadow 0.2s; }
+  .chat-bubble:hover { transform: scale(1.08); box-shadow: 0 10px 32px rgba(37,211,102,0.5); }
+  .chat-bubble svg { width: 28px; height: 28px; fill: white; }
+  .chat-popup { background: white; border-radius: 12px; width: 280px; box-shadow: 0 12px 48px rgba(0,0,0,0.15); overflow: hidden; display: none; animation: popUp 0.25s ease; }
+  .chat-popup.open { display: block; }
+  @keyframes popUp { from { opacity: 0; transform: scale(0.92) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  .chat-header { background: #25D366; padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+  .chat-avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .chat-name { font-weight: 600; color: white; font-size: 0.9rem; }
+  .chat-status { font-size: 0.72rem; color: rgba(255,255,255,0.8); margin-top: 2px; }
+  .chat-close { margin-left: auto; color: white; cursor: pointer; font-size: 1.2rem; background: none; border: none; line-height: 1; }
+  .chat-body { padding: 18px; }
+  .chat-msg { background: #f0f0f0; border-radius: 0 10px 10px 10px; padding: 12px 14px; font-size: 0.83rem; line-height: 1.6; color: var(--charcoal); margin-bottom: 14px; }
+  .chat-cta { display: block; background: #25D366; color: white; text-align: center; padding: 12px; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; transition: background 0.2s; }
+  .chat-cta:hover { background: #1db954; }
+  .chat-pulse { width: 12px; height: 12px; background: #25D366; border-radius: 50%; position: absolute; top: 0; right: 0; border: 2px solid white; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.3);opacity:0.7} }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); padding: 60px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-top: 80px; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: white; margin-bottom: 16px; }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 280px; }
+  .footer-heading { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a { text-decoration: none; font-size: 0.85rem; color: rgba(255,255,255,0.55); transition: color 0.2s; cursor: pointer; }
+  .footer-links a:hover { color: white; }
+  .footer-bottom { background: #1a1a22; padding: 20px 60px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-top { grid-template-columns: 1fr; }
+    .hero-right { min-height: 300px; }
+    .hero-left { padding: 48px 24px; }
+    .stats-strip { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
+    .about-hero { grid-template-columns: 1fr; }
+    .about-content { padding: 48px 24px; }
+    .services-grid { grid-template-columns: 1fr; margin: 0 24px 60px; }
+    .blog-grid { grid-template-columns: 1fr; margin: 0 24px 60px; }
+    .booking-info { grid-template-columns: 1fr; margin: 40px 24px; }
+    .booking-info-left { border-right: none; border-bottom: 1px solid var(--blue-pale); padding: 40px 24px; }
+    .booking-info-right { padding: 40px 24px; }
+    .booking-cards { grid-template-columns: 1fr; }
+    .booking-hero { padding: 80px 24px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-wrap { padding: 60px 24px; }
+    footer { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
+    .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .services-header { padding: 60px 24px 40px; }
+    .section-pad { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .chat-widget { bottom: 20px; right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">Physio<span>Ace</span></a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('services')">Services</a></li>
+    <li><a onclick="showPage('blog')">Blog</a></li>
+    <li><a onclick="showPage('faq')">FAQ</a></li>
+    <li><a onclick="showPage('booking')">Book</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+    <li><a class="nav-book" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I'd%20like%20to%20book%20an%20appointment." target="_blank">Book Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a onclick="showPage('home');toggleMenu()">Home</a>
+  <a onclick="showPage('about');toggleMenu()">About</a>
+  <a onclick="showPage('services');toggleMenu()">Services</a>
+  <a onclick="showPage('blog');toggleMenu()">Blog</a>
+  <a onclick="showPage('faq');toggleMenu()">FAQ</a>
+  <a onclick="showPage('booking');toggleMenu()">Book</a>
+  <a onclick="showPage('contact');toggleMenu()">Contact</a>
+</div>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+      <div class="chat-avatar">👩‍⚕️</div>
+      <div>
+        <div class="chat-name">Dr. Simran Shaikh</div>
+        <div class="chat-status">● Typically replies quickly</div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-msg">Hi there! 👋 I'm Dr. Simran. Have a question about physiotherapy or want to book a session? I'm here to help!</div>
+      <a class="chat-cta" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I'd%20like%20to%20know%20more%20about%20your%20services." target="_blank">💬 Start WhatsApp Chat</a>
+    </div>
+  </div>
+  <div style="position:relative; display:inline-block;">
+    <div class="chat-bubble" onclick="toggleChat()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.526 5.847L.057 23.882l6.196-1.623A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.515-5.163-1.41l-.371-.22-3.679.964.981-3.595-.242-.371A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    </div>
+    <div class="chat-pulse"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div id="home" class="page active">
+  <div class="hero-top">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Women's Health · Geriatric Rehab · Ergonomics</p>
+      <h1>Healing,<br><em>elevated</em><br>to an art.</h1>
+      <p class="hero-tagline">Expert physiotherapy tailored to your body, your lifestyle, and your goals — delivered with precision and care by Dr. Simran Shaikh, MPT.</p>
+      <div class="hero-cta-row">
+        <a class="btn-primary" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I'd%20like%20to%20book%20an%20appointment." target="_blank">Book a Session</a>
+        <a class="btn-outline" href="#" onclick="showPage('services')">Explore Services</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-inner">
+        <div class="hero-abstract ha1"></div>
+        <div class="hero-abstract ha2"></div>
+        <div class="hero-abstract ha3"></div>
+        <div class="photo-placeholder">
+          <div class="photo-label">📸 Add Your Photo Here</div>
+          <div class="photo-silhouette"><div class="photo-head"></div></div>
+          <div class="photo-card">
+            <div class="photo-card-name">Dr. Simran Shaikh</div>
+            <div class="photo-card-title">MPT · Physiotherapist & Wellness Expert</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat"><div class="stat-num">8<span>+</span></div><div class="stat-label">Specialised Services</div></div>
+    <div class="stat"><div class="stat-num">MPT</div><div class="stat-label">Masters in Physiotherapy</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Commitment to Your Recovery</div></div>
+  </div>
+
+  <!-- Quick services -->
+  <div class="section-pad" style="background:var(--white);">
+    <p class="section-label" style="text-align:center">What We Offer</p>
+    <div class="divider"></div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:48px;">Specialised Care<br><em>for every stage of life</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:1100px; margin:0 auto;">
+      <div style="text-align:center; padding:32px 20px;"><div style="font-size:2.2rem; margin-bottom:12px;">🌸</div><div style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; margin-bottom:8px;">Pelvic Floor Therapy</div><div style="font-size:0.82rem; color:var(--mid); line-height:1.6;">Targeted rehabilitation for pelvic health concerns</div></div>
+      <div style="text-align:center; padding:32px 20px;"><div style="font-size:2.2rem; margin-bottom:12px;">🤰</div><div style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; margin-bottom:8px;">Antenatal & Postnatal</div><div style="font-size:0.82rem; color:var(--mid); line-height:1.6;">Classes, yoga & pilates for every stage of motherhood</div></div>
+      <div style="text-align:center; padding:32px 20px;"><div style="font-size:2.2rem; margin-bottom:12px;">🏡</div><div style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; margin-bottom:8px;">Home Visits</div><div style="font-size:0.82rem; color:var(--mid); line-height:1.6;">Professional care in the comfort of your home</div></div>
+      <div style="text-align:center; padding:32px 20px;"><div style="font-size:2.2rem; margin-bottom:12px;">🧠</div><div style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; margin-bottom:8px;">Neuro Rehab</div><div style="font-size:0.82rem; color:var(--mid); line-height:1.6;">Neurological rehabilitation for lasting recovery</div></div>
+    </div>
+    <div style="text-align:center; margin-top:48px;"><a class="btn-outline" href="#" onclick="showPage('services')">View All Services</a></div>
+  </div>
+
+  <!-- Testimonials -->
+  <div style="background:var(--lavender-light); padding:80px 60px; text-align:center;">
+    <p class="section-label">Patient Stories</p>
+    <div class="divider"></div>
+    <h2 class="section-title" style="margin-bottom:56px;">A practice built on<br><em>trust & expertise</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:1000px; margin:0 auto;">
+      <div style="background:white; padding:36px 28px; text-align:left; box-shadow:0 8px 32px rgba(74,127,165,0.08);"><div style="font-size:1.6rem; color:var(--gold); margin-bottom:12px;">✦</div><p style="font-size:0.9rem; line-height:1.8; color:var(--mid); margin-bottom:20px; font-style:italic;">"Dr. Simran's approach is unlike anything I've experienced. Genuinely life-changing for my postpartum recovery."</p><div style="font-size:0.8rem; font-weight:500; color:var(--charcoal);">— Meera R., Andheri West</div></div>
+      <div style="background:white; padding:36px 28px; text-align:left; box-shadow:0 8px 32px rgba(74,127,165,0.08);"><div style="font-size:1.6rem; color:var(--gold); margin-bottom:12px;">✦</div><p style="font-size:0.9rem; line-height:1.8; color:var(--mid); margin-bottom:20px; font-style:italic;">"The home visit service is a blessing. Professional, thorough, and so comfortable for my elderly mother."</p><div style="font-size:0.8rem; font-weight:500; color:var(--charcoal);">— Priya K., Juhu</div></div>
+      <div style="background:white; padding:36px 28px; text-align:left; box-shadow:0 8px 32px rgba(74,127,165,0.08);"><div style="font-size:1.6rem; color:var(--gold); margin-bottom:12px;">✦</div><p style="font-size:0.9rem; line-height:1.8; color:var(--mid); margin-bottom:20px; font-style:italic;">"My PCOD symptoms have improved significantly. The fitness rehab plan was tailored just for me."</p><div style="font-size:0.8rem; font-weight:500; color:var(--charcoal);">— Asha T., Bandra</div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:var(--blue); padding:60px; text-align:center;">
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:300; color:white; margin-bottom:12px;">Ready to begin your recovery journey?</h2>
+    <p style="color:rgba(255,255,255,0.7); margin-bottom:32px; font-size:0.95rem;">Book your first session — WhatsApp us or call directly.</p>
+    <form id="bookingForm" style="max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:16px;">
+
+         <input type="text" id="name" placeholder="Full Name" required style="padding:16px;border:none;font-size:16px;">
+
+        <input type="email" id="email" placeholder="Email Address" required style="padding:16px;border:none;font-size:16px;">
+
+       <input type="text" id="phone" placeholder="Phone Number" required style="padding:16px;border:none;font-size:16px;">
+
+     <input type="date" id="date" required style="padding:16px;border:none;font-size:16px;">
+
+     <button type="submit" class="btn-whatsapp" style="border:none;justify-content:center;">
+     Book Appointment
+       </button>
+
+</form>
+  </div>
+
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Premium physiotherapy and rehabilitation services in Andheri West, Mumbai. Dedicated to women's health, geriatric care, and holistic wellness.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book Now</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<div id="about" class="page">
+  <div class="about-hero">
+    <div class="about-visual">
+      <div class="hero-abstract ha1" style="opacity:0.15;"></div>
+      <div class="hero-abstract ha2" style="opacity:0.15;"></div>
+      <div class="about-photo-large">
+        <div class="about-photo-tag">📸 Add Your Photo Here</div>
+        <div class="about-silhouette"><div class="about-head"></div></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <p class="section-label">About Dr. Simran</p>
+      <div class="divider left"></div>
+      <h2 class="section-title">A passion for healing,<br><em>a commitment to you.</em></h2>
+      <p class="about-text">Dr. Simran Shaikh is a Masters-qualified physiotherapist who has built her practice, PhysioAce, on a simple but powerful belief — every patient deserves care that is thorough, evidence-based, and deeply human. With a Masters in Community Physiotherapy from Maharashtra University of Health Sciences (MUHS) and a specialised certification in Pelvic Floor Rehabilitation, she brings both academic rigour and genuine clinical warmth to every session.</p>
+      <p class="about-text">Her expertise spans women's health, geriatric rehabilitation, ergonomics, and neurological care — making her one of Mumbai's most versatile physiotherapists. Whether you're navigating postpartum recovery, managing a chronic condition, or seeking relief from workplace-related pain, Dr. Simran approaches your care with patience, precision, and purpose.</p>
+      <p class="about-text">Based in Andheri West, she offers both in-person consultations and home visits across Mumbai — bringing clinic-quality care directly to those who need it most.</p>
+
+      <!-- Certifications -->
+      <div style="margin-top:40px;">
+        <p class="section-label">Qualifications & Certifications</p>
+        <div class="divider left"></div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-icon">🎓</div>
+            <div>
+              <div class="cert-title">Masters in Community Physiotherapy</div>
+              <div class="cert-sub">Maharashtra University of Health Sciences (MUHS)<br>MPT · Post-Graduate Degree</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🌸</div>
+            <div>
+              <div class="cert-title">Certification in Pelvic Floor Rehabilitation</div>
+              <div class="cert-sub">Specialised clinical training in assessment and treatment of pelvic floor dysfunction</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🤰</div>
+            <div>
+              <div class="cert-title">Women's Health Physiotherapy</div>
+              <div class="cert-sub">Antenatal & postnatal care, PCOS/PCOD rehabilitation, hormonal wellness</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🏥</div>
+            <div>
+              <div class="cert-title">Geriatric & Neurological Rehab</div>
+              <div class="cert-sub">Specialised in elderly care, fall prevention, stroke rehab & Parkinson's management</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <div style="background:var(--white); padding:80px 60px;">
+    <p class="section-label" style="text-align:center">My Philosophy</p>
+    <div class="divider"></div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:56px;">Three pillars of care</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:40px; max-width:1000px; margin:0 auto;">
+      <div style="text-align:center;"><div style="font-size:2.5rem; margin-bottom:16px;">🔬</div><h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; margin-bottom:12px;">Evidence-Based</h3><p style="font-size:0.85rem; line-height:1.75; color:var(--mid);">Every treatment plan is grounded in the latest clinical research and best practices in physiotherapy.</p></div>
+      <div style="text-align:center;"><div style="font-size:2.5rem; margin-bottom:16px;">🫶</div><h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; margin-bottom:12px;">Patient-Centred</h3><p style="font-size:0.85rem; line-height:1.75; color:var(--mid);">Your goals, your pace, your comfort — care that truly revolves around you and your life.</p></div>
+      <div style="text-align:center;"><div style="font-size:2.5rem; margin-bottom:16px;">🌿</div><h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; margin-bottom:12px;">Holistic Wellness</h3><p style="font-size:0.85rem; line-height:1.75; color:var(--mid);">Treating the whole person — physical, emotional, and functional — for sustainable, lasting recovery.</p></div>
+    </div>
+  </div>
+
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Premium physiotherapy and rehabilitation in Andheri West, Mumbai.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book Now</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<!-- ══════════════════ SERVICES ══════════════════ -->
+<div id="services" class="page">
+
+  <!-- Header -->
+  <div class="services-header">
+    <p class="section-label">Our Physiotherapy Services</p>
+    <div class="divider"></div>
+    <h2 class="section-title">Specialised, Evidence-Based<br><em>Care for Every Body</em></h2>
+    <p style="color:var(--mid); max-width:600px; margin:0 auto; font-size:0.95rem; line-height:1.8;">At PhysioAce, we provide specialized, evidence-based physiotherapy services focused on women's health, rehabilitation, and functional recovery. Every treatment plan is tailored to your body, condition, and goals.</p>
+  </div>
+
+  <!-- Vision Strip -->
+  <div style="background:linear-gradient(135deg,var(--charcoal) 0%,#1e2a38 100%); padding:60px; margin:0 60px 64px; position:relative; overflow:hidden;">
+    <div style="position:absolute;inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(74,127,165,0.25) 0%, transparent 65%);"></div>
+    <div style="position:relative;z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+      <div>
+        <p style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">Our Vision</p>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:white; line-height:1.25; margin-bottom:20px;">To be Mumbai's most trusted name in <em style="color:var(--blue-light);">women's physiotherapy</em> and holistic rehabilitation.</h3>
+        <p style="font-size:0.9rem; line-height:1.85; color:rgba(255,255,255,0.6);">We envision a world where every woman has access to expert, compassionate physiotherapy — at every stage of life. Where recovery is not a luxury, but a right. And where movement, strength, and dignity are restored not just to the body, but to the whole person.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); padding:24px 28px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="font-size:1.6rem; flex-shrink:0;">🎯</div>
+          <div><div style="font-weight:500; color:white; margin-bottom:6px; font-size:0.9rem;">Patient-First Always</div><div style="font-size:0.82rem; color:rgba(255,255,255,0.5); line-height:1.6;">Every decision, every session, every treatment plan is made with your wellbeing at the centre.</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); padding:24px 28px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="font-size:1.6rem; flex-shrink:0;">🔬</div>
+          <div><div style="font-weight:500; color:white; margin-bottom:6px; font-size:0.9rem;">Evidence, Always</div><div style="font-size:0.82rem; color:rgba(255,255,255,0.5); line-height:1.6;">Science-backed techniques, continuously updated with the latest clinical research.</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); padding:24px 28px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="font-size:1.6rem; flex-shrink:0;">🌿</div>
+          <div><div style="font-weight:500; color:white; margin-bottom:6px; font-size:0.9rem;">Holistic Recovery</div><div style="font-size:0.82rem; color:rgba(255,255,255,0.5); line-height:1.6;">Treating the whole person — body, movement, lifestyle — for lasting, meaningful outcomes.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Service Cards -->
+  <div style="padding:0 60px 20px;">
+    <p class="section-label" style="text-align:center;">All Services</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Service 1: Pelvic Floor -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--white); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">🌸</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 01</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Pelvic Floor Rehabilitation</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">Pelvic floor dysfunction can affect bladder control, core strength, and overall quality of life. Our therapy focuses on strengthening and restoring proper function through safe, evidence-based, and deeply personalised assessment and treatment.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Conditions Treated</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Urinary incontinence</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Pelvic pain</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Weak core / post-delivery weakness</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Improved bladder control</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Better core stability</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Enhanced quality of life</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 2: Antenatal -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--ivory); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">🤰</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 02</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Antenatal & Postnatal Fitness</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">Safe and guided exercise during and after pregnancy is essential for both mother and baby. Our programmes support the body through every stage of this beautiful journey, with expert physiotherapy guidance every step of the way.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Includes</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Pregnancy-safe yoga & exercises</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Postnatal recovery programs</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Core & pelvic floor strengthening</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Reduced pregnancy discomfort</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Faster post-delivery recovery</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Improved strength & flexibility</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 3: Yoga & Pilates -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--white); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">🧘</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 03</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Yoga, Pilates & Therapeutic Exercise</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">We integrate physiotherapy with guided movement practices to improve strength, flexibility, and overall well-being. A deeply restorative approach that works with your body, not against it.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Focus Areas</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Core strengthening</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Posture correction</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Mobility improvement</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Injury prevention</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Better body awareness</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Long-term fitness & health</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 4: PCOS -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--ivory); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">💜</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 04</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">PCOS / PCOD & Fertility Rehabilitation</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">Hormonal conditions like PCOS/PCOD can impact overall health and fertility. Our programmes combine exercise and lifestyle guidance to support your journey — compassionately and scientifically.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Focus Areas</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Weight management support</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Hormonal balance through exercise</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Stress reduction</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Improved metabolic health</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Better cycle regulation support</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Enhanced overall well-being</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 5: Ergonomics -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--white); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">💼</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 05</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Ergonomics & Posture Correction</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">Incorrect posture — especially during long working hours — can lead to chronic pain and discomfort. We assess your workstation and daily movement patterns to deliver lasting relief and prevention.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">We Help With</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Workstation assessment</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Posture correction techniques</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Daily movement strategies</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Reduced neck & back pain</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Improved productivity</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Prevention of long-term issues</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 6: Geriatric -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--ivory); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">👴</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 06</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Geriatric Rehabilitation</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">Specialised care for elderly individuals to maintain mobility, independence, and quality of life. We treat older adults with the dignity, patience, and expertise they deserve.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Focus Areas</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Balance and fall prevention</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Joint mobility</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Strength and endurance</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Improved confidence in movement</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Better independence</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Enhanced overall health</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 7: Musculoskeletal -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 2px; background:var(--white); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">🦴</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 07</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Musculoskeletal Rehabilitation</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">Treatment for pain and dysfunction related to muscles, joints, and bones. Using manual therapy, exercise prescription, and pain management techniques for a full return to movement.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Conditions Treated</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Back and neck pain</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Joint pain</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Muscle injuries</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Pain relief</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Improved mobility</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Faster recovery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 8: Home Visits -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin:0 60px 60px; background:var(--ivory); border:1px solid var(--blue-pale);">
+    <div style="padding:48px; border-right:1px solid var(--blue-pale);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="font-size:2rem;">🏡</div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:4px;">Service 08</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500;">Home Physiotherapy Services</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; line-height:1.85; color:var(--mid);">We bring expert physiotherapy care to your doorstep for comfort and convenience. The same professional quality as a clinic visit, in the familiar comfort of your home.</p>
+    </div>
+    <div style="padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Ideal For</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Post-surgery recovery</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Elderly patients</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--gold);margin-top:2px;">✦</span>Patients with limited mobility</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; color:var(--blue); text-transform:uppercase; margin-bottom:14px; font-weight:500;">Benefits</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Personalised one-on-one care</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Flexible scheduling</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--charcoal);"><span style="color:var(--blue);margin-top:2px;">✓</span>Same professional quality at home</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Choose PhysioAce -->
+  <div style="background:var(--lavender-light); padding:72px 60px;">
+    <p class="section-label" style="text-align:center;">Why Choose PhysioAce</p>
+    <div class="divider"></div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:48px;">A practice built on<br><em>purpose and precision</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:1100px; margin:0 auto;">
+      <div style="background:white; padding:32px 24px; text-align:center; box-shadow:0 6px 24px rgba(74,127,165,0.08);">
+        <div style="font-size:2rem; margin-bottom:14px;">🌸</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; margin-bottom:10px; font-weight:500;">Women's Health Focus</div>
+        <div style="font-size:0.82rem; color:var(--mid); line-height:1.65;">Specialized expertise in women's and functional health at every life stage.</div>
+      </div>
+      <div style="background:white; padding:32px 24px; text-align:center; box-shadow:0 6px 24px rgba(74,127,165,0.08);">
+        <div style="font-size:2rem; margin-bottom:14px;">🫶</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; margin-bottom:10px; font-weight:500;">One-on-One Care</div>
+        <div style="font-size:0.82rem; color:var(--mid); line-height:1.65;">Personalized, undivided attention — no shared sessions, no compromise.</div>
+      </div>
+      <div style="background:white; padding:32px 24px; text-align:center; box-shadow:0 6px 24px rgba(74,127,165,0.08);">
+        <div style="font-size:2rem; margin-bottom:14px;">🔬</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; margin-bottom:10px; font-weight:500;">Evidence-Based</div>
+        <div style="font-size:0.82rem; color:var(--mid); line-height:1.65;">Every treatment is grounded in the latest clinical research and best practices.</div>
+      </div>
+      <div style="background:white; padding:32px 24px; text-align:center; box-shadow:0 6px 24px rgba(74,127,165,0.08);">
+        <div style="font-size:2rem; margin-bottom:14px;">💙</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; margin-bottom:10px; font-weight:500;">Supportive Environment</div>
+        <div style="font-size:0.82rem; color:var(--mid); line-height:1.65;">A comfortable, judgment-free space where you feel safe, heard, and cared for.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:var(--blue); padding:72px 60px; text-align:center;">
+    <p style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:16px;">Your Recovery Starts Here</p>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300; color:white; line-height:1.2; margin-bottom:16px;">Whether you're managing pain, recovering<br>after pregnancy, or improving your health —</h2>
+    <p style="color:rgba(255,255,255,0.7); font-size:1rem; margin-bottom:40px; font-style:italic;">we're here to help.</p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn-whatsapp" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I'd%20like%20to%20book%20an%20appointment." target="_blank">📲 Book Your Appointment Today</a>
+      <a class="btn-call" href="tel:+917710059712" style="color:white; border-color:rgba(255,255,255,0.4);">📞 +91 77100 59712</a>
+    </div>
+  </div>
+
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Premium physiotherapy in Andheri West, Mumbai.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<!-- ══════════════════ BLOG ══════════════════ -->
+<div id="blog" class="page">
+
+  <!-- Blog list view -->
+  <div id="blogList">
+    <div class="services-header">
+      <p class="section-label">Knowledge & Wellness</p>
+      <div class="divider"></div>
+      <h2 class="section-title">The PhysioAce<br><em>Health Journal</em></h2>
+      <p style="color:var(--mid); max-width:520px; margin:0 auto; font-size:0.95rem; line-height:1.8;">Evidence-based insights on women's health, rehabilitation, and everyday wellness — written by Dr. Simran Shaikh.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card" onclick="openBlog(0)">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#EDE8F4,#D6E8F3);">🌸</div>
+        <div class="blog-body">
+          <div class="blog-tag">Women's Health</div>
+          <div class="blog-title">5 Signs Your Pelvic Floor Needs Attention (And What To Do About It)</div>
+          <div class="blog-excerpt">Leaking when you sneeze, pelvic heaviness, or pain during intimacy — many women normalise symptoms that are actually very treatable. Here's what to watch for.</div>
+          <div class="blog-meta"><span>Dr. Simran Shaikh</span><span>5 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="openBlog(1)">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#D6E8F3,#c2d8ec);">🤰</div>
+        <div class="blog-body">
+          <div class="blog-tag">Antenatal & Postnatal</div>
+          <div class="blog-title">Your Body After Birth: What's Normal, What's Not, and When to See a Physio</div>
+          <div class="blog-excerpt">Postpartum recovery is rarely linear. From diastasis recti to back pain, understand what your body is going through and how physiotherapy can help you heal faster.</div>
+          <div class="blog-meta"><span>Dr. Simran Shaikh</span><span>6 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="openBlog(2)">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#fef3e2,#EDE8F4);">💼</div>
+        <div class="blog-body">
+          <div class="blog-tag">Ergonomics</div>
+          <div class="blog-title">Work-From-Home Back Pain: The Posture Mistakes You're Making Every Day</div>
+          <div class="blog-excerpt">If you work from home and your back, neck, or shoulders ache by 4pm — your setup is probably to blame. Here's how to fix it without buying expensive furniture.</div>
+          <div class="blog-meta"><span>Dr. Simran Shaikh</span><span>4 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Article 0 -->
+  <div id="blogArticle0" class="blog-full">
+    <div class="blog-article">
+      <button class="back-btn" onclick="closeBlog()">← Back to Journal</button>
+      <div class="blog-tag" style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">Women's Health</div>
+      <h1>5 Signs Your Pelvic Floor Needs Attention (And What To Do About It)</h1>
+      <div class="meta">By Dr. Simran Shaikh, MPT · Pelvic Floor Rehabilitation Specialist · 5 min read</div>
+      <p>We live in a culture where women are expected to push through discomfort. "A little leaking after having a baby is normal." "Pelvic pain just comes with the territory." "It'll get better on its own." Except — it often doesn't. And the good news is, it doesn't have to.</p>
+      <p>Pelvic floor dysfunction is far more common than most people realise, and far more treatable than most people know. As a physiotherapist specialising in women's health, I see patients every week who have spent months or years accepting symptoms that could have been resolved in a handful of sessions.</p>
+      <h2>1. Leaking when you sneeze, cough, laugh, or exercise</h2>
+      <p>This is called stress urinary incontinence, and while it's common — especially after childbirth — it is not normal. It means the muscles and connective tissue supporting your bladder are not functioning optimally. With the right pelvic floor rehabilitation programme, the vast majority of women see significant or complete improvement.</p>
+      <h2>2. A feeling of heaviness or pressure in your pelvis</h2>
+      <p>If it feels like something is "falling out" or there's a persistent downward pressure in your pelvis, this could be a sign of pelvic organ prolapse. This occurs when the pelvic organs (bladder, uterus, or rectum) descend due to weakened support structures. Early intervention with physiotherapy can prevent progression and significantly reduce symptoms.</p>
+      <h2>3. Pain during or after intimacy</h2>
+      <p>Dyspareunia (painful intercourse) is never something you should just accept. It can result from tight, overactive pelvic floor muscles, scar tissue from childbirth or surgery, hormonal changes, or other factors — all of which can be assessed and treated by a pelvic floor physiotherapist.</p>
+      <h2>4. Urgency — rushing to the bathroom with little warning</h2>
+      <p>Urgency urinary incontinence, or the sudden, overwhelming need to urinate, is a sign of bladder overactivity. This can often be managed effectively through bladder retraining, pelvic floor exercises, and lifestyle modifications — without medication.</p>
+      <h2>5. Lower back or hip pain that doesn't resolve</h2>
+      <p>The pelvic floor is part of your core. When it isn't functioning well, it can contribute to instability in the lower back and hips. If your back pain keeps coming back despite treatment, a pelvic floor assessment might reveal the missing piece of the puzzle.</p>
+      <h2>What to do next</h2>
+      <p>The first step is a proper assessment. A pelvic floor physiotherapist will take a thorough history, understand your symptoms, and — with your consent — perform an internal and external assessment to understand exactly what's happening. From there, a personalised treatment plan is created, which typically includes exercises, manual therapy, and lifestyle advice.</p>
+      <p>If any of the above sounds familiar, please don't wait. These symptoms are common but they are not something you have to live with. Reach out to book a consultation — I'm here to help.</p>
+    </div>
+  </div>
+
+  <!-- Blog Article 1 -->
+  <div id="blogArticle1" class="blog-full">
+    <div class="blog-article">
+      <button class="back-btn" onclick="closeBlog()">← Back to Journal</button>
+      <div class="blog-tag" style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">Antenatal & Postnatal</div>
+      <h1>Your Body After Birth: What's Normal, What's Not, and When to See a Physio</h1>
+      <div class="meta">By Dr. Simran Shaikh, MPT · Women's Health Physiotherapist · 6 min read</div>
+      <p>Becoming a mother is one of the most profound physical experiences the human body goes through. Yet postnatal care — particularly for the mother's body — is often an afterthought. The six-week check is typically a quick review, and women are often told they've been "cleared" to resume normal activities with little guidance on what that actually means for their recovering body.</p>
+      <p>As a physiotherapist who works closely with new mothers, I want to share what the postnatal period actually looks like — and more importantly, when and why physiotherapy can make a real difference.</p>
+      <h2>What's normal in the first 6–12 weeks</h2>
+      <p>Some degree of discomfort, fatigue, and physical change is expected after birth. Mild perineal soreness, abdominal weakness, and general fatigue are common in the early weeks. Your body has just done something extraordinary — it needs time and the right support to recover.</p>
+      <h2>Diastasis Recti — the gap no one talks about</h2>
+      <p>Diastasis recti is a separation of the abdominal muscles that occurs during pregnancy to accommodate the growing baby. It is present to some degree in the majority of women post-birth. The key is whether the gap closes adequately and whether the connective tissue regains its tension. Certain exercises (including many popular "core" moves) can actually worsen this condition if done incorrectly. A physiotherapy assessment can identify whether you have diastasis recti and guide you through a safe, progressive rehabilitation programme.</p>
+      <h2>Lower back and pelvic girdle pain</h2>
+      <p>Hormonal changes during pregnancy loosen the ligaments of the pelvis, and the physical demands of labour, delivery, and new motherhood (think: feeding postures, carrying your baby) place significant strain on the lower back and pelvis. Persistent pain beyond 3 months postpartum warrants professional assessment.</p>
+      <h2>When to see a physiotherapist</h2>
+      <ul>
+        <li>You are leaking urine, wind, or stool</li>
+        <li>You have a visible gap or "dome" down the centre of your abdomen when you sit up</li>
+        <li>You have persistent pelvic pain or pressure</li>
+        <li>Sex is painful (at any point after you've resumed intimacy)</li>
+        <li>You want to return to exercise and aren't sure where to start safely</li>
+      </ul>
+      <h2>The bottom line</h2>
+      <p>A postnatal physiotherapy check-up at around 6–8 weeks is something I recommend for every new mother — not just those with obvious symptoms. Think of it the way you think about your baby's checkup. Your recovery matters too. Book a consultation and let's make sure you're healing the way you deserve to.</p>
+    </div>
+  </div>
+
+  <!-- Blog Article 2 -->
+  <div id="blogArticle2" class="blog-full">
+    <div class="blog-article">
+      <button class="back-btn" onclick="closeBlog()">← Back to Journal</button>
+      <div class="blog-tag" style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">Ergonomics</div>
+      <h1>Work-From-Home Back Pain: The Posture Mistakes You're Making Every Day</h1>
+      <div class="meta">By Dr. Simran Shaikh, MPT · Ergonomics Consultant · 4 min read</div>
+      <p>Since working from home became the norm, I've seen a significant rise in patients presenting with neck pain, upper back stiffness, lower back ache, and headaches — all of which trace back to one root cause: how they're sitting for 6–9 hours a day.</p>
+      <p>The irony is that most of these patients aren't sitting badly out of laziness. They genuinely don't know what correct setup looks like. Here's what I see most commonly — and how to fix it.</p>
+      <h2>Mistake 1: Your screen is too low</h2>
+      <p>Working on a laptop placed flat on a desk forces your head down and forward — a position that puts up to 27kg of strain on your cervical spine. Your screen should be at eye level. Raise your laptop on a stand and use a separate keyboard and mouse. This single change can eliminate most neck and upper back pain.</p>
+      <h2>Mistake 2: You're sitting in your sofa or bed</h2>
+      <p>Soft, unsupported surfaces encourage a slumped posture where your pelvis tilts backward, your lumbar curve flattens, and your upper back rounds. Over hours, this loads the spinal discs unevenly. Save the sofa for leisure — work at a proper chair and desk.</p>
+      <h2>Mistake 3: Your hips are higher than your knees (or vice versa)</h2>
+      <p>Ideally, your hips and knees should be at roughly 90 degrees, with your feet flat on the floor. If your chair is too high, your legs dangle and pressure builds under your thighs. Too low, and your hips flex excessively. Adjust your chair height first — then your desk height.</p>
+      <h2>Mistake 4: You never move</h2>
+      <p>No posture is perfect if you hold it for hours. The human body is designed to move. Set a timer for every 45–50 minutes and stand up, walk around, do a few gentle stretches. This is arguably the most impactful change you can make.</p>
+      <h2>Mistake 5: Your mouse is too far away</h2>
+      <p>Reaching forward repeatedly to use your mouse activates the muscles of your upper shoulder and neck in a sustained, low-level way that causes significant fatigue and pain over time. Keep your mouse close — your elbow should stay near your body, bent at 90 degrees.</p>
+      <h2>If the pain is already there</h2>
+      <p>Fixing your setup will prevent it from getting worse, but if you're already in pain, you need more than a desk adjustment. A physiotherapy assessment can identify which structures are affected and provide hands-on treatment and targeted exercises to get you back to comfortable. Don't wait until it's debilitating — book a session and let's sort it out.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Evidence-based physiotherapy and wellness education in Andheri West, Mumbai.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<div id="faq" class="page">
+  <div style="padding: 80px 60px 40px;">
+    <p class="section-label">Got Questions?</p>
+    <div class="divider left"></div>
+    <h2 class="section-title">Frequently Asked<br><em>Questions</em></h2>
+    <p style="color:var(--mid); max-width:520px; font-size:0.95rem; line-height:1.8;">Everything you need to know before booking your first session with Dr. Simran.</p>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What should I expect at my first physiotherapy session?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>Your first session begins with a detailed consultation where Dr. Simran will ask about your medical history, current symptoms, lifestyle, and goals. This is followed by a thorough physical assessment relevant to your condition. Based on this, a personalised treatment plan is created and your first treatment often begins in the same session. Please bring any relevant reports, prescriptions, or imaging (X-rays, MRI scans) with you.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do you treat male patients or only women?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>While Dr. Simran has a special focus on women's health, PhysioAce treats patients of all genders. Services like musculoskeletal rehabilitation, neurological rehab, geriatric care, post-surgical recovery, and ergonomics consultations are open to everyone. Pelvic floor therapy is available for women. Reach out to discuss your specific needs.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is pelvic floor therapy painful or uncomfortable?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>Pelvic floor physiotherapy should not be painful. Dr. Simran creates a safe, respectful, and private environment for every session. Any internal assessment is done only with your full, informed consent, and your comfort and dignity are prioritised at every step. Most patients find the sessions far more comfortable than they anticipated. You can ask questions or stop at any point — always.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How many sessions will I need?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>This depends entirely on your condition, how long you've had it, and how your body responds to treatment. Some patients see significant improvement in 4–6 sessions; others with more complex or chronic conditions may benefit from a longer course of care. Dr. Simran will give you an honest, realistic estimate after your first assessment — and will regularly review your progress with you.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do you offer home visits? How does that work?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>Yes. Home visits are available across Mumbai and are especially suitable for elderly patients, post-surgical patients who have limited mobility, or anyone who simply prefers the comfort of their own space. Dr. Simran brings all necessary equipment. Simply WhatsApp or call to discuss your location and requirements, and a session will be arranged at a mutually convenient time.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I come for antenatal or postnatal classes without a referral?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>Absolutely. You do not need a referral from a doctor to attend antenatal yoga, Pilates, or postnatal rehabilitation classes. Simply reach out to book your first session. However, if you have a high-risk pregnancy or any specific medical concerns, it's always good to let Dr. Simran know in advance so the session can be appropriately tailored.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I have PCOS. Can physiotherapy really help?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>Yes — significantly. While physiotherapy doesn't treat PCOS directly, it plays a powerful role in managing its symptoms. Exercise rehabilitation can improve insulin sensitivity, support healthy weight management, reduce pelvic pain, and improve overall quality of life for women with PCOS/PCOD. Dr. Simran designs individual fitness and rehab programmes that are safe, science-backed, and sensitive to the unique challenges of PCOS.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I book an appointment?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>The easiest way is to WhatsApp Dr. Simran directly at +91 77100 59712. Send a message with your name, your concern or the service you're interested in, and your preferred time/day. You'll receive a prompt response with confirmation details. You can also call the same number or use the contact form on this website.</p></div>
+    </div>
+  </div>
+
+  <div style="background:var(--blue); padding:60px; text-align:center; margin-top:0;">
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:white; margin-bottom:12px;">Still have a question?</h2>
+    <p style="color:rgba(255,255,255,0.7); margin-bottom:28px; font-size:0.9rem;">Reach out directly — Dr. Simran is happy to help.</p>
+    <a class="btn-whatsapp" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I%20have%20a%20question." target="_blank">💬 Ask on WhatsApp</a>
+  </div>
+
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Premium physiotherapy in Andheri West, Mumbai.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<!-- ══════════════════ BOOKING ══════════════════ -->
+<div id="booking" class="page">
+  <div class="booking-hero">
+    <p class="section-label">Book a Session</p>
+    <div class="divider"></div>
+    <h2 class="section-title">Your recovery begins<br><em>with one message.</em></h2>
+    <p>Reach out via WhatsApp or call to schedule your consultation. Dr. Simran will personally respond and guide you through the next steps.</p>
+    <div class="booking-cards">
+      <div class="booking-card"><div class="booking-card-icon">📍</div><div class="booking-card-title">In-Person Sessions</div><div class="booking-card-desc">Available in Andheri West, Mumbai. Location details shared on confirmation.</div></div>
+      <div class="booking-card"><div class="booking-card-icon">🏡</div><div class="booking-card-title">Home Visits</div><div class="booking-card-desc">Professional physiotherapy at your doorstep across Mumbai.</div></div>
+      <div class="booking-card"><div class="booking-card-icon">💬</div><div class="booking-card-title">Online Consultation</div><div class="booking-card-desc">Video call consultations for advice, assessment, and guided exercise.</div></div>
+    </div>
+<form id="bookingForm" style="max-width:600px;margin:40px auto;display:flex;flex-direction:column;gap:16px;">
+
+  <input 
+    type="text" 
+    id="name"
+    placeholder="Full Name"
+    required
+    style="padding:16px;border:none;font-size:16px;"
+  >
+
+  <input 
+    type="email"
+    id="email"
+    placeholder="Email Address"
+    required
+    style="padding:16px;border:none;font-size:16px;"
+  >
+
+  <input 
+    type="text"
+    id="phone"
+    placeholder="Phone Number"
+    required
+    style="padding:16px;border:none;font-size:16px;"
+  >
+
+  <input 
+    type="date"
+    id="date"
+    required
+    style="padding:16px;border:none;font-size:16px;"
+  >
+
+  <button 
+    type="submit"
+    class="btn-whatsapp"
+    style="justify-content:center;border:none;"
+  >
+    Book Appointment
+  </button>
+
+</form>
+  </div>
+  <div class="booking-info">
+    <div class="booking-info-left">
+      <p class="section-label">How It Works</p>
+      <div class="divider left" style="margin-bottom:32px;"></div>
+      <div style="display:flex; flex-direction:column; gap:28px;">
+        <div style="display:flex; gap:18px; align-items:flex-start;"><div style="width:34px; height:34px; border-radius:50%; background:var(--blue-pale); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue); flex-shrink:0;">1</div><div><div style="font-weight:500; margin-bottom:5px;">Reach Out</div><div style="font-size:0.85rem; color:var(--mid); line-height:1.7;">WhatsApp or call with your name, concern, and preferred time.</div></div></div>
+        <div style="display:flex; gap:18px; align-items:flex-start;"><div style="width:34px; height:34px; border-radius:50%; background:var(--blue-pale); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue); flex-shrink:0;">2</div><div><div style="font-weight:500; margin-bottom:5px;">Confirmation</div><div style="font-size:0.85rem; color:var(--mid); line-height:1.7;">Session details, location, and preparation instructions shared with you.</div></div></div>
+        <div style="display:flex; gap:18px; align-items:flex-start;"><div style="width:34px; height:34px; border-radius:50%; background:var(--blue-pale); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue); flex-shrink:0;">3</div><div><div style="font-weight:500; margin-bottom:5px;">Your Session</div><div style="font-size:0.85rem; color:var(--mid); line-height:1.7;">Thorough assessment followed by your personalised treatment plan.</div></div></div>
+        <div style="display:flex; gap:18px; align-items:flex-start;"><div style="width:34px; height:34px; border-radius:50%; background:var(--blue-pale); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue); flex-shrink:0;">4</div><div><div style="font-weight:500; margin-bottom:5px;">Ongoing Care</div><div style="font-size:0.85rem; color:var(--mid); line-height:1.7;">Progress monitored, plan evolves as you heal — every step of the way.</div></div></div>
+      </div>
+    </div>
+    <div class="booking-info-right">
+      <p class="section-label">Important Info</p>
+      <div class="divider left" style="margin-bottom:32px;"></div>
+      <div class="info-block"><div class="info-label">Location</div><div class="info-value">Andheri West, Mumbai<br><span style="color:var(--mid); font-size:0.85rem;">Exact address shared on confirmation</span></div></div>
+      <div class="info-block"><div class="info-label">Contact</div><div class="info-value"><a href="tel:+917710059712">+91 77100 59712</a><br><a href="https://wa.me/917710059712" target="_blank">WhatsApp Dr. Simran</a></div></div>
+      <div class="info-block"><div class="info-label">Session Types</div><div class="info-value">In-person · Home Visit · Online</div></div>
+      <div class="info-block"><div class="info-label">First Visit</div><div class="info-value">Please bring any relevant medical reports, prescriptions, or imaging to your first session.</div></div>
+      <div style="margin-top:28px;"><a class="btn-primary" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I'd%20like%20to%20book%20an%20appointment." target="_blank">Book via WhatsApp</a></div>
+    </div>
+  </div>
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Premium physiotherapy in Andheri West, Mumbai.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<div id="contact" class="page">
+  <div class="contact-wrap">
+    <p class="section-label">Get in Touch</p>
+    <div class="divider left"></div>
+    <h2 class="section-title" style="margin-bottom:56px;">Let's talk about<br><em>your health goals.</em></h2>
+    <div class="contact-grid">
+      <div>
+        <p style="font-size:0.85rem; color:var(--mid); margin-bottom:28px; line-height:1.7;">Fill in the form and Dr. Simran will get back to you shortly. For a faster response, reach out via WhatsApp.</p>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Priya"></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Sharma"></div>
+          </div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"></div>
+          <div class="form-group">
+            <label>Service of Interest</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Pelvic Floor Therapy</option>
+              <option>Antenatal / Postnatal Care</option>
+              <option>PCOS / PCOD Fitness & Rehab</option>
+              <option>Home Visit</option>
+              <option>Post-Surgical Rehabilitation</option>
+              <option>Musculoskeletal Rehabilitation</option>
+              <option>Neurological Rehabilitation</option>
+              <option>Geriatric Rehabilitation</option>
+              <option>Ergonomics Consultation</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Your Message</label><textarea rows="4" placeholder="Tell us a little about your concern or what you're looking for..."></textarea></div>
+          <a class="btn-whatsapp" href="https://wa.me/917710059712?text=Hi%20Dr.%20Simran!%20I'd%20like%20to%20get%20in%20touch." target="_blank" style="display:inline-block; text-align:center;">📲 Send via WhatsApp</a>
+          <p style="font-size:0.75rem; color:var(--mid); margin-top:-8px;">Clicking opens WhatsApp with a pre-filled message. Add your details and send!</p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="contact-info-item"><div class="label">Phone</div><div class="value"><a href="tel:+917710059712">+91 77100 59712</a></div></div>
+        <div class="contact-info-item"><div class="label">WhatsApp</div><div class="value"><a href="https://wa.me/917710059712" target="_blank">Chat with Dr. Simran</a></div></div>
+        <div class="contact-info-item"><div class="label">Location</div><div class="value">Andheri West, Mumbai, Maharashtra</div></div>
+        <div class="contact-info-item"><div class="label">Services Available</div><div class="value">In-Person · Home Visits · Online Consultations</div></div>
+        <div class="map-placeholder"><div style="font-size:2rem;">🗺️</div><div>Andheri West, Mumbai</div><div style="font-size:0.75rem; color:var(--blue-light); margin-top:4px;">Exact address shared on booking</div></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div><div class="footer-logo">Physio<span>Ace</span></div><p class="footer-tagline">Premium physiotherapy in Andheri West, Mumbai.</p></div>
+    <div><p class="footer-heading">Pages</p><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('blog')">Blog</a></li><li><a onclick="showPage('faq')">FAQ</a></li><li><a onclick="showPage('booking')">Book</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+    <div><p class="footer-heading">Contact</p><ul class="footer-links"><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📞 +91 77100 59712</li><li style="color:rgba(255,255,255,0.55); font-size:0.85rem;">📍 Andheri West, Mumbai</li><li><a href="https://wa.me/917710059712" target="_blank">💬 WhatsApp Us</a></li></ul></div>
+  </footer>
+  <div class="footer-bottom"><p>© 2025 PhysioAce · Dr. Simran Shaikh, MPT</p><p>Andheri West, Mumbai</p></div>
+</div>
+
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Reset blog view when navigating to blog page
+    if (id === 'blog') {
+      document.getElementById('blogList').style.display = 'block';
+      document.querySelectorAll('.blog-full').forEach(b => b.classList.remove('open'));
+    }
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function toggleChat() {
+    document.getElementById('chatPopup').classList.toggle('open');
+  }
+
+  function openBlog(index) {
+    document.getElementById('blogList').style.display = 'none';
+    document.getElementById('blogArticle' + index).classList.add('open');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeBlog() {
+    document.querySelectorAll('.blog-full').forEach(b => b.classList.remove('open'));
+    document.getElementById('blogList').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+<script>
+
+document.getElementById('bookingForm')
+.addEventListener('submit', async function(e){
+
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        date: document.getElementById('date').value
+    };
+
+    try {
+
+        const response = await fetch('http://localhost:5000/book', {
+
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if(result.success){
+            alert('Appointment booked successfully!');
+        }
+        else{
+            alert('Something went wrong');
+        }
+
+    } catch(err){
+
+        console.log(err);
+        alert('Server error');
+
+    }
+
+});
+
+</script>
+</body>
+</html>
