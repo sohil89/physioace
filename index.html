@@ -70,6 +70,20 @@
   .ha3 { width: 180px; height: 180px; background: var(--gold); bottom: 200px; right: 100px; opacity: 0.15; }
 
   /* PHOTO PLACEHOLDER */
+
+    .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+   .doctor-image {
+    width: 420px;
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+   }
   .photo-placeholder {
     position: relative; z-index: 2;
     width: 300px; height: 380px;
@@ -362,7 +376,9 @@
         <div class="hero-abstract ha2"></div>
         <div class="hero-abstract ha3"></div>
         <div class="photo-placeholder">
-          <div class="photo-label">📸 Add Your Photo Here</div>
+          <div class="hero-image">
+            <img src="images/doctor.jpg" alt="Dr Simran" class="doctor-image">
+		</div>
           <div class="photo-silhouette"><div class="photo-head"></div></div>
           <div class="photo-card">
             <div class="photo-card-name">Dr. Simran Shaikh</div>
