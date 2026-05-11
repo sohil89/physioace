@@ -1,40 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>PhysioAce Admin</title>
+  <title>PhysioAce CMS</title>
 
-  <!-- Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Decap CMS -->
-  <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/main.css">
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      background: #0f172a;
-    }
-  </style>
+  <script src="https://unpkg.com/decap-cms@3.1.8/dist/decap-cms.js"></script>
 </head>
 
 <body>
 
 <script>
   if (window.netlifyIdentity) {
-
-    window.netlifyIdentity.on("login", () => {
-      document.location.href = "/admin/";
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
     });
-
-    window.netlifyIdentity.on("logout", () => {
-      document.location.href = "/";
-    });
-
-    window.netlifyIdentity.init();
   }
 </script>
 
