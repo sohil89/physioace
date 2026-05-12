@@ -1,16 +1,30 @@
 backend:
-  name: test-repo
+  name: github
+  repo: sohil89/physioace
+  branch: main
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "blog"
     label: "Blog"
-    folder: "_posts"
+    folder: "src/content/blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Publish Date"
+        name: "pubDate"
+        widget: "datetime"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
